@@ -5,20 +5,17 @@ import { useEffect, useState } from "react";
 
 const slides = [
   {
-    title: "PravRaha -  Your end to end GTM Platform ",
+    title: "PravRaha - Your end to end GTM Platform",
     desc: "From first prospect to final signature",
-    subtitle: "",
     image: "/image.webp",
   },
   {
     title: "The engine behind your next enterprise deal.",
-    subtitle: "",
     desc: "Identify, enrich, and engage your ideal buyers.",
     image: "/hero1.jpg",
   },
   {
     title: "Sell your Products and Services with Confidence",
-    subtitle: "",
     desc: "Deploy, monitor, and scale AI-powered SaaS products with built-in intelligence, automation, and security.",
     image: "/backui.png",
   },
@@ -38,7 +35,6 @@ export default function HeroSlider() {
 
   return (
     <section className="relative h-[89vh] overflow-hidden">
-      
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -50,7 +46,7 @@ export default function HeroSlider() {
           {/* Background Image */}
           <Image
             src={slide.image}
-            alt="Hero"
+            alt={slide.title}
             fill
             className="object-cover"
             priority
@@ -62,10 +58,8 @@ export default function HeroSlider() {
           {/* Content */}
           <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
             <div className="text-white max-w-2xl">
-
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 {slide.title}
-                <span className="text-[#D4AF37]"> {slide.subtitle}</span>
               </h1>
 
               <p className="mt-6 text-lg text-gray-300">
@@ -74,14 +68,13 @@ export default function HeroSlider() {
 
               {/* CTA */}
               <div className="mt-8 flex gap-4">
-                <button className="bg-[#D4AF37] text-black px-6 py-3 rounded-lg font-semibold">
+                <button className="bg-[#D4AF37] text-black px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
                   Book a Demo
                 </button>
-                <button className="border border-white px-6 py-3 rounded-lg font-semibold">
+                <button className="border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition">
                   Learn More
                 </button>
               </div>
-
             </div>
           </div>
         </div>
@@ -99,7 +92,6 @@ export default function HeroSlider() {
           />
         ))}
       </div>
-
     </section>
   );
 }
