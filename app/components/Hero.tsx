@@ -1,82 +1,103 @@
 "use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export default function Hero() {
+const slides = [
+  {
+    title: "Build Digital Products",
+    subtitle: "Faster Than Ever",
+    desc: "Create scalable SaaS platforms with modern technologies.",
+    image: "/hero.jpg",
+  },
+  {
+    title: "Scale Your Platform",
+    subtitle: "Without Limits",
+    desc: "Handle millions of users with secure infrastructure.",
+    image: "/B2B.jpg",
+  },
+  {
+    title: "Launch With Confidence",
+    subtitle: "Smart & Secure",
+    desc: "Deploy faster with automation and monitoring tools.",
+    image: "/backui.png",
+  },
+];
+
+export default function HeroSlider() {
+  const [current, setCurrent] = useState(0);
+
+  // Auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative h-[89vh] overflow-hidden">
+      
+      {/* Slides */}
+      {slides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === current ? "opacity-100 z-10" : "opacity-0"
+          }`}
+        >
+          {/* Background Image */}
+          <Image
+            src={slide.image}
+            alt="Hero"
+            fill
+            className="object-cover"
+            priority
+          />
 
-      {/* Background Image */}
-      <Image
-        src="/hero.jpg"
-        alt="Business technology"
-        fill
-        priority
-        className="object-cover"
-      />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/70"></div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+          {/* Content */}
+          <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
+            <div className="text-white max-w-2xl">
 
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-2 gap-12 items-center">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                {slide.title}
+                <span className="text-[#D4AF37]"> {slide.subtitle}</span>
+              </h1>
 
-        {/* Left Content */}
-        <div className="text-white">
+              <p className="mt-6 text-lg text-gray-300">
+                {slide.desc}
+              </p>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-  Transform Your Business
-  <span className="text-[#D4AF37]"> With Technology</span>
-</h1>
+              {/* CTA */}
+              <div className="mt-8 flex gap-4">
+                <button className="bg-[#D4AF37] text-black px-6 py-3 rounded-lg font-semibold">
+                  Get Started
+                </button>
+                <button className="border border-white px-6 py-3 rounded-lg font-semibold">
+                  Learn More
+                </button>
+              </div>
 
-
-          <p className="mt-6 text-lg text-gray-200 max-w-xl">
-            Harness advanced digital solutions and strategic consulting to
-            optimize workflows, integrate modern platforms, and achieve
-            scalable growth for your organization.
-          </p>
-
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 mt-8">
-
-            <a
-  href="/quick-call"
-  className="bg-[#D4AF37] text-black px-6 py-3 rounded-md font-semibold hover:bg-[#C19A2B] transition"
->
-  Quick Call →
-</a>
-
-
-            <a
-              href="/services"
-              className="border border-white px-6 py-3 rounded-md font-semibold hover:bg-white hover:text-black transition"
-            >
-              Explore Services
-            </a>
-
+            </div>
           </div>
-
         </div>
+      ))}
 
-        {/* Right Cards */}
-        <div className="hidden lg:flex flex-col gap-6">
-
-          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-white">
-            <h3 className="text-2xl font-bold">250+</h3>
-            <p className="text-gray-200">Successful Projects Delivered</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-white ml-12">
-            <h3 className="text-2xl font-bold">120+</h3>
-            <p className="text-gray-200">Global Clients</p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-white">
-            <h3 className="text-2xl font-bold">10+ Years</h3>
-            <p className="text-gray-200">Technology Expertise</p>
-          </div>
-
-        </div>
-
+      {/* Dots */}
+      <div className="absolute bottom-6 w-full flex justify-center gap-3">
+        {slides.map((_, i) => (
+          <div
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-3 h-3 rounded-full cursor-pointer transition ${
+              i === current ? "bg-[#D4AF37] scale-110" : "bg-white/40"
+            }`}
+          />
+        ))}
       </div>
 
     </section>

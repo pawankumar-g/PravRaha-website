@@ -4,6 +4,7 @@ import React from "react";
 import Footer from "@/app/components/Footer";
 import ContactSection from "@/app/components/ContactSection";
 import { Target, Users, Bot, BarChart3 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -75,87 +76,114 @@ export default function Page() {
         </div>
       </section>
 
-   <section className="bg-gradient-to-b from-gray-50 to-white py-24">
-  <div className="max-w-7xl mx-auto px-6 text-center">
-    
-    <h2 className="text-5xl font-bold mb-6 text-gray-900">
-      A Smarter Way to Generate Leads
-    </h2>
+      {/* FEATURES */}
+      <section className="bg-gradient-to-b from-gray-50 to-white py-24">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-5xl font-bold mb-6 text-gray-900">
+            A Smarter Way to Generate Leads
+          </h2>
 
-    <p className="text-lg text-gray-600 mb-20 max-w-2xl mx-auto">
-      We combine strategy, data, and automation to deliver consistent, scalable growth.
-    </p>
+          <p className="text-lg text-gray-600 mb-20 max-w-2xl mx-auto">
+            We combine strategy, data, and automation to deliver consistent, scalable growth.
+          </p>
 
-    <div className="grid md:grid-cols-4 gap-10">
-      {features.map((item, i) => {
-        const Icon = item.icon;
+          <div className="grid md:grid-cols-4 gap-10">
+            {features.map((item, i) => {
+              const Icon = item.icon;
 
-        return (
-          <div
-            key={i}
-            className="group rounded-3xl p-1 bg-[#6F8586] hover:scale-105 transition duration-500"
-          >
-            {/* INNER CARD */}
-            <div className="bg-white rounded-3xl p-10 h-full shadow-md hover:shadow-2xl transition duration-500">
+              return (
+                <div
+                  key={i}
+                  className="group rounded-3xl p-1 bg-[#6F8586] hover:scale-105 transition duration-500"
+                >
+                  <div className="bg-white rounded-3xl p-10 h-full shadow-md hover:shadow-2xl transition duration-500">
 
-              {/* ICON */}
-              <div className="relative w-20 h-20 mx-auto mb-8">
-                <div className="absolute inset-0 bg-yellow-300 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500"></div>
+                    <div className="relative w-20 h-20 mx-auto mb-8">
+                      <div className="absolute inset-0 bg-yellow-300 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition duration-500"></div>
 
-                <div className="relative flex items-center justify-center w-20 h-20 rounded-full bg-yellow-100 border-2 border-black group-hover:bg-yellow-400 transition duration-300">
-                  <Icon className="w-9 h-9 text-yellow-700 group-hover:text-black transition duration-300" />
+                      <div className="relative flex items-center justify-center w-20 h-20 rounded-full bg-yellow-100 border-2 border-black group-hover:bg-yellow-400 transition duration-300">
+                        <Icon className="w-9 h-9 text-yellow-700 group-hover:text-black transition duration-300" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              {/* TITLE */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                {item.title}
-              </h3>
-
-              {/* DESC */}
-              <p className="text-base text-gray-600 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
+              );
+            })}
           </div>
-        );
-      })}
+        </div>
+      </section>
+{/*  PREMIUM PROCESS SECTION */}
+<section className="py-28 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+  <div className="max-w-5xl mx-auto px-6">
+
+    {/* Heading */}
+    <div className="text-center mb-20">
+      <h2 className="text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+        Our Proven Process
+      </h2>
+      <p className="text-gray-500 text-lg max-w-xl mx-auto">
+        A structured workflow designed for predictable and scalable growth.
+      </p>
+    </div>
+
+    {/* Timeline */}
+    <div className="relative">
+
+      {/* Gradient Line */}
+      <div className="absolute left-4 top-0 h-full w-[3px] bg-gradient-to-b from-black via-gray-400 to-transparent rounded-full" />
+
+      {steps.map((step, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: i * 0.2 }}
+          viewport={{ once: true }}
+          className="relative pl-16 mb-14"
+        >
+          {/* Step Number Dot */}
+          <div className="absolute left-0 top-1 flex items-center justify-center w-9 h-9 rounded-full bg-black text-white text-sm font-semibold shadow-lg">
+            {i + 1}
+          </div>
+
+          {/* Card */}
+          <div className="group bg-white/70 backdrop-blur-xl border border-gray-200 p-7 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition duration-500">
+
+            {/* Step Label */}
+            <span className="text-xs font-semibold text-yellow-500 tracking-wider uppercase">
+              Step {i + 1}
+            </span>
+
+            {/* Title */}
+            <h3 className="text-2xl font-semibold text-gray-900 mt-2 mb-2 group-hover:text-black transition">
+              {step.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-gray-600 leading-relaxed">
+              {step.desc}
+            </p>
+
+            {/* Accent Line */}
+            <div className="mt-4 h-[2px] w-0 bg-gradient-to-r from-black to-gray-400 group-hover:w-full transition-all duration-500"></div>
+
+          </div>
+        </motion.div>
+      ))}
+
     </div>
   </div>
 </section>
 
-      {/* PROCESS */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Our Proven Process
-          </h2>
-          <p className="text-gray-600 mb-12">
-            A structured workflow designed for predictable growth.
-          </p>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {steps.map((step, i) => (
-              <div
-                key={i}
-                className="bg-gray-900 text-white p-8 rounded-2xl shadow-lg relative hover:-translate-y-2 transition"
-              >
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-black w-10 h-10 flex items-center justify-center rounded-full font-bold">
-                  {i + 1}
-                </div>
-                <h3 className="text-lg font-semibold mt-6 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
+      {/* CONTACT */}
       <ContactSection />
 
       {/* CTA */}

@@ -24,8 +24,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-10 font-medium text-gray-700">
-
+<ul className="hidden md:flex items-center gap-10 text-[16px] font-semibold text-black">
           {/* Home */}
           <li className="relative group">
             <Link href="/" className="relative">
@@ -34,16 +33,14 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {/* PRODUCTS DROPDOWN */}
+          {/* PRODUCTS */}
           <li className="relative group">
             <span className="cursor-pointer relative">
               Products
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all group-hover:w-full"></span>
             </span>
 
-            <div className="absolute top-full mt-2 left-0 w-96 bg-white shadow-xl rounded-xl p-6 border
-                            opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                            transition-all duration-200 z-50">
+            <div className="absolute top-full mt-2 left-0 w-96 bg-white shadow-xl rounded-xl p-6 border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
 
               <Link
                 href="/go-to-market"
@@ -60,18 +57,15 @@ export default function Navbar() {
             </div>
           </li>
 
-          {/* SERVICES DROPDOWN */}
+          {/* SERVICES */}
           <li className="relative group">
             <span className="cursor-pointer relative">
               Services
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all group-hover:w-full"></span>
             </span>
 
-            <div className="absolute top-full mt-2 left-0 w-96 bg-white shadow-xl rounded-xl p-6 border
-                            opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                            transition-all duration-200 z-50">
+            <div className="absolute top-full mt-2 left-0 w-96 bg-white shadow-xl rounded-xl p-6 border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
 
-              {/* B2B Lead Generation */}
               <Link
                 href="/services/b2b-lead-generation"
                 className="block hover:bg-gray-50 p-3 rounded-lg transition"
@@ -87,20 +81,63 @@ export default function Navbar() {
             </div>
           </li>
 
-          {/* Resources */}
+          {/* RESOURCES */}
           <li className="relative group">
-            <Link href="/resources" className="relative">
-              Resources
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all group-hover:w-full"></span>
+            <Link href="#" className="relative flex items-center gap-1">
+              Resources 
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
+
+            <div className="absolute left-0 top-8 hidden group-hover:block bg-white shadow-xl rounded-xl w-64 p-4 border z-50">
+              <Link
+                href="/resources/blog"
+                className="block p-3 rounded-lg hover:bg-gray-100 transition"
+              >
+                <h3 className="font-semibold text-gray-800">Blog</h3>
+                <p className="text-sm text-gray-500">
+                  Latest insights, tips, and news from our team
+                </p>
+              </Link>
+            </div>
           </li>
 
-          {/* Company */}
+          {/* COMPANY DROPDOWN (NEW) */}
           <li className="relative group">
-            <Link href="/company" className="relative">
+            <span className="cursor-pointer relative">
               Company
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all group-hover:w-full"></span>
-            </Link>
+            </span>
+
+            <div className="absolute top-full mt-3 left-0 w-72 bg-white shadow-xl rounded-xl border overflow-hidden
+                            opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                            transition-all duration-200 z-50">
+
+              {/* About Us */}
+              <Link
+                href="/company/about"
+                className="block px-5 py-4 hover:bg-gray-100 transition"
+              >
+                <h3 className="font-semibold text-gray-800">About us</h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  Learn about our mission, vision, and the team behind PravRaha
+                </p>
+              </Link>
+
+              {/* Divider */}
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Contact */}
+              <Link
+                href="/company/contact"
+                className="block px-5 py-4 hover:bg-gray-100 transition"
+              >
+                <h3 className="font-semibold text-gray-800">Contact</h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  Get in touch with our team for any questions or partnerships
+                </p>
+              </Link>
+
+            </div>
           </li>
 
         </ul>
@@ -136,22 +173,14 @@ export default function Navbar() {
           <ul className="flex flex-col items-center gap-6 py-8 text-gray-700 font-medium">
 
             <li><Link href="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+            <li><Link href="/go-to-market" onClick={() => setMenuOpen(false)}>Go-to-Market Platform</Link></li>
+            <li><Link href="/services/b2b-lead-generation" onClick={() => setMenuOpen(false)}>B2B Lead Generation</Link></li>
 
-            <li>
-              <Link href="/go-to-market" onClick={() => setMenuOpen(false)}>
-                Go-to-Market Platform
-              </Link>
-            </li>
+            <li><Link href="/resources/blog" onClick={() => setMenuOpen(false)}>Blog</Link></li>
 
-            {/* Services Mobile */}
-            <li>
-              <Link href="/services/b2b-lead-generation" onClick={() => setMenuOpen(false)}>
-                B2B Lead Generation
-              </Link>
-            </li>
-
-            <li><Link href="/resources" onClick={() => setMenuOpen(false)}>Resources</Link></li>
-            <li><Link href="/company" onClick={() => setMenuOpen(false)}>Company</Link></li>
+            {/* Company Mobile */}
+            <li><Link href="/company/about" onClick={() => setMenuOpen(false)}>About Us</Link></li>
+            <li><Link href="/company/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
 
             <Link
               href="/dashboard"

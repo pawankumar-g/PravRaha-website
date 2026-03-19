@@ -161,3 +161,7 @@ function SpotlightCard({ product }: { product: Product }) {
     </motion.div>
   );
 }
+
+
+
+
